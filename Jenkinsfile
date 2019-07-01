@@ -17,6 +17,7 @@ pipeline {
         stage('BuildNotest') {
           steps {
             libraryResource 'harmanBuild'
+            load 'test'
           }
         }
       }
