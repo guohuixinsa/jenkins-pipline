@@ -1,3 +1,15 @@
+@Library('harmanBuild') _
+@NonCPS
+def getDownloadType(Build,Params,ENV){
+    println Build
+    println Params
+    def SCM = Build.project.getSCMs()
+    println SCM
+    println Build.project.getSCMs()[1].type
+    androidEmail(Build,Params,ENV) 
+    def dateS = new org.version.dateString()
+}
+
 pipeline {
   agent {
     node {
@@ -16,7 +28,9 @@ pipeline {
         }
         stage('BuildNotest') {
           steps {
-            readFile 'android/.repo/manifests/default.xml'
+             dir("${WORKSPACE}") {
+                       getDownloadType(currentBuild.rawBuild,params,env)
+                    }
           }
         }
       }
