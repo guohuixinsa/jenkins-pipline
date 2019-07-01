@@ -16,8 +16,7 @@ pipeline {
         }
         stage('BuildNotest') {
           steps {
-            libraryResource 'harmanBuild'
-            load 'test'
+            readFile 'android/.repo/manifests/default.xml'
           }
         }
       }
